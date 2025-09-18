@@ -21,4 +21,5 @@ class TestTwoSum(ParameterizedTestCase):
 
 if __name__ == "__main__":
     import unittest
+
     unittest.main()
