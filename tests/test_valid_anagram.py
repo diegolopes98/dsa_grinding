@@ -1,4 +1,4 @@
-from problems.is_anagram import isAnagra
+from problems.valid_anagram import isAnagra
 from tests.base_test import ParameterizedTestCase
 
 
@@ -23,7 +23,11 @@ class TestIsAnagram(ParameterizedTestCase):
         ("long anagram", ("conversation", "voices rant on"), False),
         ("palindrome", ("racecar", "racecar"), True),
         ("reverse", ("abc", "cba"), True),
-        ("mixed case and symbols", ("A man a plan a canal Panama", "Amanaplanacanalpanama"), False),
+        (
+            "mixed case and symbols",
+            ("A man a plan a canal Panama", "Amanaplanacanalpanama"),
+            False,
+        ),
         ("unicode characters", ("café", "éfac"), True),
         ("special characters", ("a!b@c#", "#c@b!a"), True),
     ]
