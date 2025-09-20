@@ -1,4 +1,4 @@
-from problems.remove_duplicates.solution import remove_duplicates
+from problems.remove_duplicates_from_sorted_array.solution import remove_duplicates
 from test_utils.base_reference_test import BaseReferenceTestCase
 
 
