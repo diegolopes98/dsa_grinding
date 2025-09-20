@@ -1,5 +1,5 @@
-from problems.group_anagrams import group_anagrams
-from tests.base_in_out_test import BaseInOutTestCase
+from problems.group_anagrams.solution import group_anagrams
+from test_utils.base_in_out_test import BaseInOutTestCase
 
 
 class TestGroupAnagrams(BaseInOutTestCase):

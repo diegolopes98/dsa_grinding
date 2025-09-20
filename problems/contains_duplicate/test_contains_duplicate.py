@@ -1,5 +1,5 @@
-from problems.contains_duplicate import contains_duplicate
-from tests.base_in_out_test import BaseInOutTestCase
+from problems.contains_duplicate.solution import contains_duplicate
+from test_utils.base_in_out_test import BaseInOutTestCase
 
 
 class TestContainsDuplicate(BaseInOutTestCase):

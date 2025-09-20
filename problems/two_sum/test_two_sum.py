@@ -1,5 +1,5 @@
-from problems.two_sum import two_sum
-from tests.base_in_out_test import BaseInOutTestCase
+from problems.two_sum.solution import two_sum
+from test_utils.base_in_out_test import BaseInOutTestCase
 
 
 class TestTwoSum(BaseInOutTestCase):

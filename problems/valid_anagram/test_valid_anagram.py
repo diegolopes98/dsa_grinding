@@ -1,5 +1,5 @@
-from problems.valid_anagram import isAnagra
-from tests.base_in_out_test import BaseInOutTestCase
+from problems.valid_anagram.solution import isAnagra
+from test_utils.base_in_out_test import BaseInOutTestCase
 
 
 class TestIsAnagram(BaseInOutTestCase):

@@ -1,5 +1,5 @@
-from problems.top_k_frequent import top_k_frequent
-from tests.base_in_out_test import BaseInOutTestCase
+from problems.top_k_frequent.solution import top_k_frequent
+from test_utils.base_in_out_test import BaseInOutTestCase
 
 
 class TestTopKFrequent(BaseInOutTestCase):

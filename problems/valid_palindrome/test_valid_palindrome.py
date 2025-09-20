@@ -1,5 +1,5 @@
-from problems.valid_palindrome import isPalindrome
-from tests.base_in_out_test import BaseInOutTestCase
+from problems.valid_palindrome.solution import isPalindrome
+from test_utils.base_in_out_test import BaseInOutTestCase
 
 
 class TestIsPalindrome(BaseInOutTestCase):
