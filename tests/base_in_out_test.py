@@ -2,9 +2,9 @@ import unittest
 from typing import Any, List, Tuple, Callable
 
 
-class ParameterizedTestCase(unittest.TestCase):
+class BaseInOutTestCase(unittest.TestCase):
     """
-    Abstract base class for creating parameterized tests.
+    Abstract base class for creating input-output tests.
 
     Usage:
     1. Inherit from this class
@@ -19,7 +19,7 @@ class ParameterizedTestCase(unittest.TestCase):
     def __init_subclass__(cls, **kwargs):
         super().__init_subclass__(**kwargs)
 
-        if cls.__name__ in ["ParameterizedTestCaseWithSetup"]:
+        if cls.__name__ in ["BaseInOutTestCaseWithSetup"]:
             return
 
         if cls.function_under_test is None:
@@ -52,12 +52,12 @@ class ParameterizedTestCase(unittest.TestCase):
         setattr(cls, method_name, test_method)
 
 
-class ParameterizedTestCaseWithSetup(ParameterizedTestCase):
+class BaseInOutTestCaseWithSetup(BaseInOutTestCase):
     """
     Extended version that allows custom setup and teardown for each test case.
 
     Usage:
-    Same as ParameterizedTestCase, but you can optionally override:
+    Same as BaseInOutTestCase, but you can optionally override:
     - setup_test_case(test_name, input_args) - called before each test
     - teardown_test_case(test_name, input_args) - called after each test
     """

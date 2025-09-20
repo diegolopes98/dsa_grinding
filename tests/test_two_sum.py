@@ -1,8 +1,8 @@
 from problems.two_sum import two_sum
-from tests.base_test import ParameterizedTestCase
+from tests.base_in_out_test import BaseInOutTestCase
 
 
-class TestTwoSum(ParameterizedTestCase):
+class TestTwoSum(BaseInOutTestCase):
     function_under_test = two_sum
 
     test_cases = [

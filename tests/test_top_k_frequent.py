@@ -1,8 +1,8 @@
 from problems.top_k_frequent import top_k_frequent
-from tests.base_test import ParameterizedTestCase
+from tests.base_in_out_test import BaseInOutTestCase
 
 
-class TestTopKFrequent(ParameterizedTestCase):
+class TestTopKFrequent(BaseInOutTestCase):
     function_under_test = top_k_frequent
 
     test_cases = [

@@ -1,8 +1,8 @@
 from problems.contains_duplicate import contains_duplicate
-from tests.base_test import ParameterizedTestCase
+from tests.base_in_out_test import BaseInOutTestCase
 
 
-class TestContainsDuplicate(ParameterizedTestCase):
+class TestContainsDuplicate(BaseInOutTestCase):
     function_under_test = contains_duplicate
 
     test_cases = [

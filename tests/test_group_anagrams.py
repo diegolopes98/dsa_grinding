@@ -1,8 +1,8 @@
 from problems.group_anagrams import group_anagrams
-from tests.base_test import ParameterizedTestCase
+from tests.base_in_out_test import BaseInOutTestCase
 
 
-class TestGroupAnagrams(ParameterizedTestCase):
+class TestGroupAnagrams(BaseInOutTestCase):
     function_under_test = group_anagrams
 
     test_cases = [

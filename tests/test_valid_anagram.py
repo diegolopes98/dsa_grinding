@@ -1,8 +1,8 @@
 from problems.valid_anagram import isAnagra
-from tests.base_test import ParameterizedTestCase
+from tests.base_in_out_test import BaseInOutTestCase
 
 
-class TestIsAnagram(ParameterizedTestCase):
+class TestIsAnagram(BaseInOutTestCase):
     function_under_test = isAnagra
 
     test_cases = [

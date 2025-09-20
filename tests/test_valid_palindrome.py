@@ -1,8 +1,8 @@
 from problems.valid_palindrome import isPalindrome
-from tests.base_test import ParameterizedTestCase
+from tests.base_in_out_test import BaseInOutTestCase
 
 
-class TestIsPalindrome(ParameterizedTestCase):
+class TestIsPalindrome(BaseInOutTestCase):
     function_under_test = isPalindrome
 
     test_cases = [
