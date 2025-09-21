@@ -35,7 +35,7 @@ class TestIsValid(BaseInOutTestCase):
         ("invalid reverse order", ("}{",), False),
         ("valid alternating types", ("({})[]",), True),
         ("invalid crossing pairs", ("([])()}{",), False),
-        ("large valid sequence", ("(((((((((()))))))))))",), True),
+        ("large valid sequence", ("(((((((((())))))))))",), True),
         ("large invalid sequence", ("(((((((((())))))))",), False),
     ]
 
