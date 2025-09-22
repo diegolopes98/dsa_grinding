@@ -39,11 +39,13 @@ def assert_reversed_linked_list(test_case, original_input, result):
 
 class TestReverseListCustom(BaseInOutTestCase):
     @staticmethod
-    def function_under_test(values):
+    def function_wrapper(values):
         """Wrapper function that takes values and returns result as values"""
         head = create_linked_list(values)
         result = reverse_list(head)
         return linked_list_to_list(result)
+
+    function_under_test = [function_wrapper]
 
     test_cases = [
         ("empty list", ([],), []),

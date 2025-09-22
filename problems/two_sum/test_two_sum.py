@@ -3,7 +3,7 @@ from test_utils.base_in_out_test import BaseInOutTestCase
 
 
 class TestTwoSum(BaseInOutTestCase):
-    function_under_test = two_sum
+    function_under_test = [two_sum]
 
     test_cases = [
         ("basic case", ([2, 7, 11, 15], 9), [0, 1]),

@@ -3,7 +3,7 @@ from test_utils.base_in_out_test import BaseInOutTestCase
 
 
 class TestGroupAnagrams(BaseInOutTestCase):
-    function_under_test = group_anagrams
+    function_under_test = [group_anagrams]
 
     test_cases = [
         ("basic anagrams", (["eat", "tea", "tan", "ate", "nat", "bat"],), [["eat", "tea", "ate"], ["tan", "nat"], ["bat"]]),

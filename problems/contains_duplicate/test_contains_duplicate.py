@@ -3,7 +3,7 @@ from test_utils.base_in_out_test import BaseInOutTestCase
 
 
 class TestContainsDuplicate(BaseInOutTestCase):
-    function_under_test = contains_duplicate
+    function_under_test = [contains_duplicate]
 
     test_cases = [
         ("has duplicates", ([1, 2, 3, 1],), True),

@@ -3,7 +3,7 @@ from test_utils.base_in_out_test import BaseInOutTestCase
 
 
 class TestGetConcatenation(BaseInOutTestCase):
-    function_under_test = get_concatenation
+    function_under_test = [get_concatenation]
 
     test_cases = [
         ("basic concatenation", ([1, 2, 1],), [1, 2, 1, 1, 2, 1]),

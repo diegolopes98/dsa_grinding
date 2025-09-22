@@ -27,12 +27,14 @@ def linked_list_to_list(head):
 
 class TestMergeTwoSortedLists(BaseInOutTestCase):
     @staticmethod
-    def function_under_test(list1_values, list2_values):
+    def function_wrapper(list1_values, list2_values):
         """Wrapper function that takes two lists of values and returns merged result as values"""
         list1 = create_linked_list(list1_values)
         list2 = create_linked_list(list2_values)
         result = merge_two_sorted_lists(list1, list2)
         return linked_list_to_list(result)
+
+    function_under_test = [function_wrapper]
 
     test_cases = [
         ("both empty", ([], []), []),

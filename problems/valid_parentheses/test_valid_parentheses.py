@@ -3,7 +3,7 @@ from test_utils.base_in_out_test import BaseInOutTestCase
 
 
 class TestIsValid(BaseInOutTestCase):
-    function_under_test = is_valid
+    function_under_test = [is_valid]
 
     test_cases = [
         ("valid basic parentheses", ("()",), True),

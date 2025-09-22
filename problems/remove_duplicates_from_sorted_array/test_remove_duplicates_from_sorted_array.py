@@ -60,7 +60,7 @@ def assert_all_same(original_input, modified_input):
 
 
 class TestRemoveDuplicates(BaseReferenceTestCase):
-    function_under_test = remove_duplicates
+    function_under_test = [remove_duplicates]
 
     test_cases = [
         ("basic duplicates", ([1, 1, 2],), assert_duplicates_removed),

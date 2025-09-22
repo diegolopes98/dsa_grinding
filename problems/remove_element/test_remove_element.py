@@ -73,7 +73,7 @@ def assert_empty_array(original_input, modified_input):
 
 
 class TestRemoveElement(BaseReferenceTestCase):
-    function_under_test = remove_element
+    function_under_test = [remove_element]
 
     test_cases = [
         ("basic removal", ([3, 2, 2, 3], 3), assert_element_removed),

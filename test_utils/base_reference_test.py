@@ -9,7 +9,7 @@ class BaseReferenceTestCase(unittest.TestCase):
 
     Usage:
     1. Inherit from this class
-    2. Set the function_under_test class attribute to your function
+    2. Set the function_under_test class attribute to a list of functions
     3. Set the test_cases class attribute to a list of tuples containing:
        (test_name, input_args, assertion_function)
 
@@ -26,7 +26,7 @@ class BaseReferenceTestCase(unittest.TestCase):
         ]
     """
 
-    function_under_test: Callable = None
+    function_under_test: List[Callable] = []
     test_cases: List[Tuple[str, Tuple, Callable]] = []
 
     def __init_subclass__(cls, **kwargs):
@@ -35,18 +35,27 @@ class BaseReferenceTestCase(unittest.TestCase):
         if cls.__name__ in ["BaseReferenceTestCaseWithSetup"]:
             return
 
-        if cls.function_under_test is None:
-            raise ValueError(f"{cls.__name__} must define function_under_test")
+        if not cls.function_under_test:
+            raise ValueError(f"{cls.__name__} must define function_under_test as a list of functions")
 
         if not cls.test_cases:
             raise ValueError(f"{cls.__name__} must define test_cases")
 
         for test_name, input_args, assertion_func in cls.test_cases:
-            cls._create_test_method(test_name, input_args, assertion_func)
+            for i, func in enumerate(cls.function_under_test):
+                func_name = getattr(func, '__name__', f'function_{i}')
+                if len(cls.function_under_test) > 1:
+                    # Multiple functions: create separate test for each
+                    test_method_name = f"{test_name}_{func_name}"
+                else:
+                    # Single function: use original test name
+                    test_method_name = test_name
+
+                cls._create_test_method(test_method_name, input_args, assertion_func, func, func_name)
 
     @classmethod
     def _create_test_method(
-        cls, test_name: str, input_args: Tuple, assertion_func: Callable
+        cls, test_name: str, input_args: Tuple, assertion_func: Callable, func: Callable, func_name: str
     ):
         """Create a test method dynamically"""
 
@@ -56,19 +65,19 @@ class BaseReferenceTestCase(unittest.TestCase):
             modified_input = copy.deepcopy(input_args)
 
             # Call the function with the modified input
-            cls.function_under_test(*modified_input)
+            func(*modified_input)
 
             # Run the custom assertion
             try:
                 assertion_func(original_input, modified_input)
             except Exception as e:
                 self.fail(
-                    f"Failed for test '{test_name}' with inputs {original_input}: {str(e)}"
+                    f"Failed for test '{test_name}' using function '{func_name}' with inputs {original_input}: {str(e)}"
                 )
 
         method_name = f"test_{test_name.lower().replace(' ', '_').replace('-', '_')}"
         test_method.__name__ = method_name
-        test_method.__doc__ = f"Test case: {test_name}"
+        test_method.__doc__ = f"Test case: {test_name} (using {func_name})"
 
         setattr(cls, method_name, test_method)
 
@@ -79,46 +88,46 @@ class BaseReferenceTestCaseWithSetup(BaseReferenceTestCase):
 
     Usage:
     Same as BaseReferenceTestCase, but you can optionally override:
-    - setup_test_case(test_name, input_args) - called before each test
-    - teardown_test_case(test_name, input_args) - called after each test
+    - setup_test_case(test_name, input_args, func_name) - called before each test
+    - teardown_test_case(test_name, input_args, func_name) - called after each test
     """
 
-    def setup_test_case(self, test_name: str, input_args: Tuple):
+    def setup_test_case(self, test_name: str, input_args: Tuple, func_name: str):
         """Override this method to add custom setup for each test case"""
         pass
 
-    def teardown_test_case(self, test_name: str, input_args: Tuple):
+    def teardown_test_case(self, test_name: str, input_args: Tuple, func_name: str):
         """Override this method to add custom teardown for each test case"""
         pass
 
     @classmethod
     def _create_test_method(
-        cls, test_name: str, input_args: Tuple, assertion_func: Callable
+        cls, test_name: str, input_args: Tuple, assertion_func: Callable, func: Callable, func_name: str
     ):
         """Create a test method with setup/teardown support"""
 
         def test_method(self):
-            self.setup_test_case(test_name, input_args)
+            self.setup_test_case(test_name, input_args, func_name)
             try:
                 # Deep copy the input to preserve original for assertion
                 original_input = copy.deepcopy(input_args)
                 modified_input = copy.deepcopy(input_args)
 
                 # Call the function with the modified input
-                cls.function_under_test(*modified_input)
+                func(*modified_input)
 
                 # Run the custom assertion
                 try:
                     assertion_func(original_input, modified_input)
                 except Exception as e:
                     self.fail(
-                        f"Failed for test '{test_name}' with inputs {original_input}: {str(e)}"
+                        f"Failed for test '{test_name}' using function '{func_name}' with inputs {original_input}: {str(e)}"
                     )
             finally:
-                self.teardown_test_case(test_name, input_args)
+                self.teardown_test_case(test_name, input_args, func_name)
 
         method_name = f"test_{test_name.lower().replace(' ', '_').replace('-', '_')}"
         test_method.__name__ = method_name
-        test_method.__doc__ = f"Test case: {test_name}"
+        test_method.__doc__ = f"Test case: {test_name} (using {func_name})"
 
         setattr(cls, method_name, test_method)

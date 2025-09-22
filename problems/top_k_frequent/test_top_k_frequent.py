@@ -3,7 +3,7 @@ from test_utils.base_in_out_test import BaseInOutTestCase
 
 
 class TestTopKFrequent(BaseInOutTestCase):
-    function_under_test = top_k_frequent
+    function_under_test = [top_k_frequent]
 
     test_cases = [
         ("basic example", ([1, 1, 1, 2, 2, 3], 2), [1, 2]),

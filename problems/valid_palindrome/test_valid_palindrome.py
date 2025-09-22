@@ -3,7 +3,7 @@ from test_utils.base_in_out_test import BaseInOutTestCase
 
 
 class TestIsPalindrome(BaseInOutTestCase):
-    function_under_test = isPalindrome
+    function_under_test = [isPalindrome]
 
     test_cases = [
         ("basic palindrome", ("A man a plan a canal Panama",), True),

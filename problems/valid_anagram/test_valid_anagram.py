@@ -3,7 +3,7 @@ from test_utils.base_in_out_test import BaseInOutTestCase
 
 
 class TestIsAnagram(BaseInOutTestCase):
-    function_under_test = isAnagra
+    function_under_test = [isAnagra]
 
     test_cases = [
         ("basic anagram", ("anagram", "nagaram"), True),
